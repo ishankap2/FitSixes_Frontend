@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
@@ -8,15 +8,15 @@ export class TeamServiceService {
 
   constructor(private _http: Http){}
   
-      getAllCompanies(){
-          return this._http.get("http://localhost:55079/RecruitmentProcess/GetAllProcesses")
+    public  getAllTeams(){
+          return this._http.get("http://ip.jsontest.com/")
           .map(res => res.json());
       }
   
-      postData(){
+    public addTeam(){
           var headers = new Headers();
           headers.append('Content-Type','application/json');
-          return this._http.post('http://localhost:3000/posts',{ headers: headers})
+          return this._http.post('http://timezonedb.com/api',{ headers: headers})
           .map(res => res.json());
   
       }
