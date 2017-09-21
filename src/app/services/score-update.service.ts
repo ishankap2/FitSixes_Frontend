@@ -26,7 +26,7 @@ export class ScoreUpdateService {
   constructor(private http:Http) { }
 
        updateScore(par_1:any,par_2:any){
-           console.log(par_1);
+           console.log({par_1,par_2});
         return this.http.post('localhost:8000/', { battingscore: par_1,bowlingscore:par_2}); 
     	}
 
