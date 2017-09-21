@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import {routing} from "./app.routing";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
+import { ScoreUpdateComponent } from './admin/score-update/score-update.component';
+import {ScoreUpdateService} from "./services/score-update.service";
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     AppComponent,
     CreateMatchComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ScoreUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {FormsModule} from "@angular/forms";
     HttpModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [ScoreUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
