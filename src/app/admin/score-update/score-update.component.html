@@ -1,53 +1,69 @@
-<div class="container-fluid">
-<div class="row">
-	<input type="radio" [value]="1"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">1st innings
-	<input type="radio" [value]="2"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">2nd innings
-	<label>Batting :</label>
-	<select [(ngModel)]="battingscore.teamId" >
-		<option [ngValue]="1" >Team 1</option>
-		<option [ngValue]="2">Team 2</option>
-	</select>
-	<label>Balling :</label>
-	<select [(ngModel)]="bowlingscore.teamId" >
-		<option [ngValue]="1">Team 1</option>
-		<option [ngValue]="2" >Team 2</option>
-	</select>
+<div class="container">
+<div class="row well">
+  <div class="row col-md-4">
+    <label class="inning_label">Inning :</label>
+    <label class="radio-inline label-default inning_label"><input type="radio" [value]="1"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">1st innings</label>
+    <label class="radio-inline label-default inning_label"><input type="radio" [value]="2"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">2nd innings</label>
+  </div>
+  <div class="row col-md-4 batting_balling">
+    <label>Batting :</label>
+  	<input type="text" value="Team 1" readonly/>
+  </div>
+
+  <div class="row col-md-4 batting_balling">
+    <label>Balling :</label>
+  	<input class="" type="text" value="Team 2" readonly/>
+  </div>
 </div>
 <div class="row">
 	<div class="col-md-8">
 		<div class="row">
-			<table class="table">
+      <label>Batting Team</label>
+			<table class="table table-bordered">
 				<tr>
-					<td><input type="radio" name="batting" [value]="1" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 1</td>
-					<td>Score goes here...</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="batting" [value]="1" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 1</label>
+          </td>
+					<td class="table_score_column">Score goes here...</td>
 					<td><label>Total of Player 1</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="batting" [value]="2" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 2</td>
-					<td>Score goes here...</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="batting" [value]="2" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 2</label>
+          </td>
+					<td class="table_score_column">Score goes here...</td>
 					<td><label>Total of Player 2</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="batting" [value]="3" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 3</td>
-					<td>Score goes here...</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="batting" [value]="3" [(ngModel)]="battingscore.playerId" #playerId="ngModel">Player 3</label>
+          </td>
+					<td class="table_score_column">Score goes here...</td>
 					<td><label>Total of Player 3</label></td>
 				</tr>
 			</table>
 		</div>
 		<div class="row">
-			<table class="table">
+      <label>Balling Team</label>
+			<table class="table table-bordered">
 				<tr>
-					<td><input type="radio" name="bowling" [value]="1" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 1</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="bowling" [value]="1" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 1</label>
+          </td>
 					<td>Score goes here...</td>
 					<td><label>Total of Player 1</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="bowling" [value]="2" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 2</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="bowling" [value]="2" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 2</label>
+          </td>
 					<td>Score goes here...</td>
 					<td><label>Total of Player 2</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="bowling" [value]="3" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 3</td>
+					<td class="table_player_column">
+            <label><input type="radio" name="bowling" [value]="3" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">Player 3</label>
+          </td>
 					<td>Score goes here...</td>
 					<td><label>Total of Player 3</label></td>
 				</tr>
@@ -55,19 +71,46 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="row">
-			<input type="radio" name="runs" [value]="1"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">1<br>
-			<input type="radio" name="runs" [value]="2"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">2<br>
-			<input type="radio" name="runs" [value]="3"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">3<br>
-			<input type="radio" name="runs" [value]="4"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">4<br>
-			<input type="radio" name="runs" [value]="6"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">6<br>
+		<div class="row score_div">
+      <label>Score :</label><br>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="1"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "1"</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="2"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "2"</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="3"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "3"</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="4"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "4"</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="6"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "6"</label>
 		</div>
-		<div class="row">
-			extras
+		<div class="row score_div">
+			<label>Ball Status :</label><br>
+      <label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_status" [value]="1"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Valid</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_status" [value]="2"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Leg Bye</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_status" [value]="3"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Bye</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_status" [value]="4"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Run</label>
 		</div>
-		
+    <div class="row score_div">
+      <label>No/Wide/Wicket :</label><br>
+      <div class="col-md-8">
+        <select class="form-control">
+          <option value="">No Ball</option>
+          <option value="">Wide</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="radio-inline btn btn-default score_val"><input class="form=-control" type="checkbox" name="wicket">Wicket</label>
+      </div>
+    </div>
+    <div class="row score_div">
+			<label>Extras :</label><br>
+      <select class="form-control">
+        <option value="">Extra "1"</option>
+        <option value="">Extra "2"</option>
+        <option value="">Extra "3"</option>
+        <option value="">Extra "4"</option>
+        <option value="">Extra "5"</option>
+      </select>
+		</div>
+    <div class="row score_div">
+			<button class="btn btn-lg btn-primary btn-block btn-signin" (click)="updateBallByball()" >Register</button>
+		</div>
 	</div>
-</div>	
 </div>
-
-<button class="btn btn-lg btn-primary btn-block btn-signin" (click)="updateBallByball()" >Register</button>
+</div>

@@ -13,17 +13,13 @@
     <div class="row">
     <div class="col-lg-6"> Select the team
       <select style="margin-left: 20px">
-      <option value="volvo">Team 1</option>
-      <option value="saab">Team 2</option>
-      <option value="opel">Team 3</option>
-      <option value="audi">Team 4</option>
-    </select></div>
-    <div class="col-lg-6">Select the team <select style="margin-left: 20px">
-      <option value="volvo">Team 1</option>
-      <option value="saab"> Team 2</option>
-      <option value="opel"> Team 3</option>
-      <option value="audi">Team 4</option>
-    </select></div>
+        <option value="volvo" *ngFor="let det of matchdata">{{det.ProductName}}</option>
+      </select></div>
+    <div class="col-lg-6">Select the team
+      <select style="margin-left: 20px" >
+          <option value="volvo" *ngFor="let det of matchdata">{{det.ProductName}}</option>
+    </select>
+  </div>
     </div>
   <br>
   <div class="row">
@@ -33,4 +29,3 @@
   <hr>
   <button class="btn btn-default"> Create match</button>
 </div>
-
