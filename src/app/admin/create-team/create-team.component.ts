@@ -7,9 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTeamComponent implements OnInit {
 
+  player1: string;
+  player2: string;
+  player3: string;
+  player4: string;
+  player5: string;
+  player6: string;
+
+  teamName: string;
+  companyName: string;
+
+  companies: string[];
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  public GetCompanies(){
+    
+  }
+
+  public AddTeam(){
+
+  }
+
+  public AddPlayers(){
+    
+  }
 }

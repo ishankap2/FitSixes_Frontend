@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class CreateMatchService {
+export class TeamServiceService {
 
   constructor(private _http: Http){}
   
