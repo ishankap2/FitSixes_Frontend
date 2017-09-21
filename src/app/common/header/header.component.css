@@ -1,0 +1,32 @@
+li{
+  font-weight: bold;
+}
+.navbar-right{
+  margin-right: 20px;
+  height: 50px;
+
+}
+.navbar-default {
+  background-color: white;
+  border-color: #E7E7E7;
+  min-height: 50px;
+}
+.navbar{
+  /*border-bottom: solid #168fec 3px;*/
+  padding-top: 5px;
+  margin-bottom: 0px;
+  background-color: #fdfdfd;
+  border-bottom: solid #0068a5 2px;
+  min-height: 100px;
+  opacity: 0.95;
+}
+
+li:hover {
+  color: white;
+  background-color: #89b6ff;
+
+}
+.navbar-nav li a {
+  line-height: 50px;
+  font-size: 1em;
+}
