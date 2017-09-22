@@ -38,13 +38,12 @@ export class CreateMatchComponent implements OnInit {
       groundId: this.groundId,
       overs: this.overs,
       balls: this.balls,
-      team1id: this.team1id,
-      team2id: this.team2id
+      team1Id: this.team1id,
+      team2Id: this.team2id
     }
-
     this.matchService.createMatch(match)
     .subscribe(
-      data => alert("Success"),
+      data =>  {console.log(data)},
       error => alert(error)       
       );
       window.location.reload();

@@ -11,14 +11,14 @@ export class TeamServiceService {
   constructor(private _http: Http){}
   
     public  getAllTeams(){
-          return this._http.get("http://localhost:3000/api/team/getAllTeams")
+          return this._http.get("http://localhost:8080/api/team/getAllTeams")
           .map(res => res.json());
     }
   
     public addTeam(team: Team){
           var headers = new Headers();
           headers.append('Content-Type','application/json');
-          return this._http.post('http://localhost:3000/api/team/addTeam',team,{ headers: headers})
+          return this._http.post('http://localhost:8080/api/team/addTeam',team,{ headers: headers})
           .map(res => res.json());
   
     }
@@ -26,7 +26,7 @@ export class TeamServiceService {
     public addPlayers(players: any){
       var headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this._http.post('http://localhost:3000/api/player/addPlayers',players,{ headers: headers})
+      return this._http.post('http://localhost:8080/api/player/addPlayers',players,{ headers: headers})
       .map(res => res.json());
     }
 
@@ -34,7 +34,7 @@ export class TeamServiceService {
       console.log(id)
       var headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this._http.post('http://localhost:3000/api/team/removeTeam',{ "teamId":id},{ headers: headers})
+      return this._http.post('http://localhost:8080/api/team/removeTeam',{ "teamId":id},{ headers: headers})
       .map(res => res.json());
     }
 
