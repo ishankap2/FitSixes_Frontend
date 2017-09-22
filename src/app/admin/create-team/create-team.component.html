@@ -1,3 +1,5 @@
+<div style="padding-top:10%"></div>
+
 <div class="col-md-2"></div>
 
 <div class="col-md-8">
@@ -6,14 +8,14 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="teamName">Company Name:</label>
         <div class="col-md-10">
-          <input type="text" class="form-control" id="company" [(ngModel)]="team.company" name="company">
+          <input type="text" class="form-control" id="company" [(ngModel)]="team.companyName" name="companyName">
         </div>
       </div>
 
       <div class="form-group">
           <label class="control-label col-sm-2" for="teamName">Team Name:</label>
           <div class="col-md-10">
-            <input type="text" class="form-control" [(ngModel)]="team.teamname" name="teamname"> 
+            <input type="text" class="form-control" [(ngModel)]="team.teamName" name="teamName"> 
           </div>
       </div>
 
@@ -23,62 +25,76 @@
           </div>
       </div>
       
-      <h2>Players</h2>
+      <h2>Players Registration</h2>
       
       <div class="form-group"> 
         <label class="control-label col-sm-3" for="player1">Select the Team:</label>
-        <select>
-          <option value="volvo">Team 1</option>
-          <option value="saab"> Team 2</option>
-          <option value="opel"> Team 3</option>
-          <option value="audi">Team 4</option>
-      </select></div>
+        <select [(ngModel)]="teamid" name="teamid">
+          <option *ngFor="let team of teams; let i = index" value='{{team.teamId}}'>{{team.teamName}}</option>
+      </select>
+      <div class="col-sm-3"></div>
+      
+    </div>
+    
+    <div class="form-group">
+        <div class="col-sm-6"></div>
+      <div class="col-sm-3">
+        <button type="submit" class="btn btn-default" (click)="DeleteTeam()">Delete Team</button>
+      </div>
+    </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="player1">Player 1:</label>
         <div class="col-sm-10">          
-          <input type="text" class="form-control" placeholder="Enter player1" [(ngModel)]="players.player1" name="player1">
+          <input type="text" class="form-control" placeholder="Enter player1" [(ngModel)]="player1" name="player1">
         </div>
       </div>
       
       <div class="form-group">
           <label class="control-label col-sm-2" for="player2">Player 2:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" placeholder="Enter player2" [(ngModel)]="players.player2" name="player2">
+            <input type="text" class="form-control" placeholder="Enter player2" [(ngModel)]="player2" name="player2">
           </div>
       </div>
       
       <div class="form-group">
           <label class="control-label col-sm-2" for="player3">Player 3:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" placeholder="Enter player3" [(ngModel)]="players.player3" name="player3">
+            <input type="text" class="form-control" placeholder="Enter player3" [(ngModel)]="player3" name="player3">
           </div>
       </div>
 
       <div class="form-group">
           <label class="control-label col-sm-2" for="player4">Player 4:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" placeholder="Enter player4" [(ngModel)]="players.player4" name="player4">
+            <input type="text" class="form-control" placeholder="Enter player4" [(ngModel)]="player4" name="player4">
           </div>
       </div>
       
       <div class="form-group">
           <label class="control-label col-sm-2" for="player5">Player 5:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" placeholder="Enter player5" [(ngModel)]="players.player5" name="player5">
+            <input type="text" class="form-control" placeholder="Enter player5" [(ngModel)]="player5" name="player5">
           </div>
       </div>
 
       <div class="form-group">
-          <label class="control-label col-sm-2" for="player5">Player 6:</label>
+          <label class="control-label col-sm-2" for="player6">Player 6:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" placeholder="Enter player6" [(ngModel)]="players.player6" name="player5">
+            <input type="text" class="form-control" placeholder="Enter player6" [(ngModel)]="player6" name="player6">
           </div>
       </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="player7">Player 7:</label>
+        <div class="col-sm-10">          
+          <input type="text" class="form-control" placeholder="Enter player7" [(ngModel)]="player7" name="player7">
+        </div>
+    </div>
       
       <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default" (click)="GetTeams()">Submit</button>
+          <button type="submit" class="btn btn-default" (click)="AddPlayers()">Add Players</button>
         </div>
       </div>
     </form>

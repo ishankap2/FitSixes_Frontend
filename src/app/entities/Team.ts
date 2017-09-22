@@ -1,6 +1,7 @@
 export class Team{
 
-        public company: string
-        public teamname: string
+        public companyName: string
+        public teamName: string
+        public teamId: number
     
     }

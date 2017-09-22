@@ -9,6 +9,8 @@ import {routing} from "./app.routing";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import { CreateTeamComponent } from './admin/create-team/create-team.component';
+import { LoginComponent } from './admin/login/login.component';
+import { AuthService } from '../app/services/auth.service'
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { CreateTeamComponent } from './admin/create-team/create-team.component';
     CreateMatchComponent,
     HeaderComponent,
     HomeComponent,
-    CreateTeamComponent
+    CreateTeamComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { CreateTeamComponent } from './admin/create-team/create-team.component';
     HttpModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
