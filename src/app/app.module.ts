@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import {routing} from "./app.routing";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
+import { CreateTeamComponent } from './admin/create-team/create-team.component';
+import { LoginComponent } from './admin/login/login.component';
+import { AuthService } from '../app/services/auth.service'
 
 
 @NgModule({
@@ -15,7 +18,9 @@ import {FormsModule} from "@angular/forms";
     AppComponent,
     CreateMatchComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    CreateTeamComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import {FormsModule} from "@angular/forms";
     HttpModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
