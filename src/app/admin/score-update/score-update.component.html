@@ -1,11 +1,20 @@
 <div class="container" style="margin-top:10%">
 <div class="row well">
   <div class="row col-md-4">
-    <label class="inning_label">Inning :</label>
-    <label class="radio-inline label-default inning_label">
-    <input type="radio" [value]="1"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">1st innings</label>
-    <label class="radio-inline label-default inning_label">
-    <input type="radio" [value]="2"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">2nd innings</label>
+    <div class="row">
+      <label class="inning_label">Inning :</label>
+      <label class="radio-inline label-default inning_label">
+      <input type="radio" [value]="1"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">1st innings</label>
+      <label class="radio-inline label-default inning_label">
+      <input type="radio" [value]="2"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">2nd innings</label>
+    </div>
+    <div class="row">
+      <label>Matches :</label>
+      <select [(ngModel)]="matchId" class="form-control" style="width:250px">
+        <option *ngFor="let match of allMatches;" [ngValue]="match.matchId">{{match.name}}</option>
+      </select>
+      <button class="btn btn-sm btn-danger" style="margin:5px" (click)="loadMatch()" >Load Match</button>
+    </div>
   </div>
   <div class="row col-md-2 batting_balling">
     <label>Batting :</label>
@@ -25,7 +34,7 @@
   <div class="row col-md-2 batting_balling">
     <button class="btn btn-sm btn-primary" style="margin:5px" (click)="swapInnig()" >Change Inning</button>
     <button class="btn btn-sm btn-danger" style="margin:5px" (click)="stopInnig()" >Stop Inning</button>
-    <button class="btn btn-sm btn-danger" style="margin:5px" (click)="stopMacth()" >Stop Match</button>
+    <button class="btn btn-sm btn-danger" style="margin:5px" (click)="stopMatch()" >Stop Match</button>
   </div>
 </div>
 <div class="row">

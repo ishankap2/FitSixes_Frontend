@@ -23,36 +23,44 @@ export class BowlingScore {
 
 @Injectable()
 export class ScoreUpdateService {
-
+  matchId:any = 0;
   constructor(private http:Http) { }
 
        updateScore(battingScore:BattingScore,bowlingscore:any): Observable<any>{
-        return this.http.post('http://fitsixes.azurewebsites.net/api/bowler/addNewBall', {batting:battingScore,bowler:bowlingscore})
+        return this.http.post('http://159.203.77.217:8080/api/bowler/addNewBall', {batting:battingScore,bowler:bowlingscore})
         .map((res:Response) => res.json())
                         .catch((error:any)=>Observable.throw(error.json().error_description || 'Server error'));
     	}
 
-        getMatchDetails(): Observable<any>{
-        return this.http.get('http://localhost:8000/json')
+        getMatchDetails(matchId:any): Observable<any>{
+        return this.http.post('http://159.203.77.217:8080/api/match/getMatchDetails',{matchId:matchId})
                         // ...and calling .json() on the response to return data
                          .map((res:Response) => res.json())
                          //...errors if any
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
 
-        getPlayerScore(matchId:any,playerId:any,teamId:any){
-            return this.http.post('http://localhost:8000/player',{matchId:matchId,playerId:playerId,teamId:teamId})
+        getPlayerScore(matchId:any,playerId:any,teamId:any,bowlerId:any){
+            return this.http.post('http://159.203.77.217:8080/api/bowler/getScore',{matchId:matchId,playerId:playerId,teamId:teamId,bowlerId:bowlerId})
                         // ...and calling .json() on the response to return data
                          .map((res:Response) => res.json())
                          //...errors if any
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
 
-        getBowlerResult(matchId:any,playerId:any,teamId:any){
-            return this.http.post('http://localhost:8000/player',{matchId:matchId,playerId:playerId,teamId:teamId})
+        getBowlerResult(matchId:any,playerId:any,teamId:any,bowlerId:any){
+            return this.http.post('http://159.203.77.217:8080/api/bowler/getScore',{matchId:matchId,playerId:playerId,teamId:teamId,bowlerId:bowlerId})
                         // ...and calling .json() on the response to return data
                          .map((res:Response) => res.json())
                          //...errors if any
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        }
+
+        getAllMatches(){
+          return this.http.get('http://159.203.77.217:8080/api/match/getAllMatches')
+                          // ...and calling .json() on the response to return data
+                           .map((res:Response) => res.json())
+                           //...errors if any
+                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
 }

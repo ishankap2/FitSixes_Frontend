@@ -24,25 +24,21 @@ export class ScoreUpdateComponent implements OnInit {
   totScore:number=0;
   totalScoreWicketsStr:string = "0/0";
   currentOvers:string = "0.0";
+  allMatches:any = [];
   constructor(private scoreUpdateService:ScoreUpdateService) { }
 
   ngOnInit() {
-    //this.getMatchDetails()
-  }
-
-  reloadScoreData(matchId) {
-      console.log("Before "+this.matchId);
-        this.matchId = matchId;
-        console.log("After "+this.matchId);
-        if(this.matchId == 0){
-          this.getMatchDetails();
-        }else{
-          this.getMatchScoreHistory();
-        }
-  }
-
-  getMatchScoreHistory(){
-
+    this.scoreUpdateService.getAllMatches()
+    .subscribe(
+        res=>{
+          console.log(res);
+          this.allMatches = res;
+          },
+          err=> {}
+        );
+        //this.getMatchDetails(this.matchId);
+        console.log("Match Id");
+        console.log(this.matchId);
   }
 
   updateBallByball(){
@@ -99,7 +95,7 @@ export class ScoreUpdateComponent implements OnInit {
   }
 
   getPlayerScore(){
-     this.scoreUpdateService.getPlayerScore(this.matchDetails.matchId,this.battingscore.playerId,this.battingscore.teamId)
+     this.scoreUpdateService.getPlayerScore(this.matchDetails.matchId,this.battingscore.playerId,this.battingscore.teamId,this.bowlingscore.bowlerId)
         .subscribe(
                          res=>{
                            this.tempScores = res.playerScore;
@@ -115,14 +111,13 @@ export class ScoreUpdateComponent implements OnInit {
                            }
                            this.totalScoreWicketsStr = res.matchResult.total+"/"+res.matchResult.wickets;
                            this.currentOvers = res.matchResult.currentOvers;
-                           console.log(res);
                          },
                          err=> {}
                          );
   }
 
   getBowlerResult(){
-     this.scoreUpdateService.getBowlerResult(this.matchDetails.matchId,this.bowlingscore.bowlerId,this.battingscore.teamId)
+     this.scoreUpdateService.getBowlerResult(this.matchDetails.matchId,this.battingscore.playerId,this.battingscore.teamId,this.bowlingscore.bowlerId)
         .subscribe(
                          res=>{
                            for(let player of this.players[1]){
@@ -130,23 +125,23 @@ export class ScoreUpdateComponent implements OnInit {
                                player.bowlerResult = res.bowlerResult;
                              }
                            }
-                           console.log(res);
                          },
                          err=> {}
                          );
   }
 
-  getMatchDetails(){
-     this.scoreUpdateService.getMatchDetails()
+  getMatchDetails(matchId:any){
+    console.log(matchId);
+     this.scoreUpdateService.getMatchDetails(matchId)
      .subscribe(
                          res=>{
                             this.matchDetails=res;
-                            this.battingscore={'matchId':this.matchDetails.matchid,'teamId':this.matchDetails.Teams[0].teamid,'teamName':this.matchDetails.Teams[0].teamName}
-                            this.bowlingscore={'matchId':this.matchDetails.matchid,'teamId':this.matchDetails.Teams[1].teamid,'teamName':this.matchDetails.Teams[1].teamName,'extras':0}
+                            this.battingscore={'matchId':this.matchDetails.matchId,'teamId':this.matchDetails.teams[0].teamId,'teamName':this.matchDetails.teams[0].teamName}
+                            this.bowlingscore={'matchId':this.matchDetails.matchId,'teamId':this.matchDetails.teams[1].teamId,'teamName':this.matchDetails.teams[1].teamName,'extras':0}
                             this.setDefault()
                             this.players[0]=[];
                             this.players[1]=[];
-                            for(let player of this.matchDetails.Teams[0].Players){
+                            for(let player of this.matchDetails.teams[0].players){
                               let newVal = {
                                 playerId:player.playerId,
                                 name:player.name,
@@ -156,7 +151,7 @@ export class ScoreUpdateComponent implements OnInit {
                               };
                               this.players[0].push(newVal);
                             }
-                            for(let player of this.matchDetails.Teams[1].Players){
+                            for(let player of this.matchDetails.teams[1].players){
                               let newVal = {
                                 playerId:player.playerId,
                                 name:player.name,
@@ -188,6 +183,13 @@ export class ScoreUpdateComponent implements OnInit {
   stopInnig(){
     this.over_num = 0;
     this.ball_num = 1;
+  }
+  stopMatch(){
+
+  }
+
+  loadMatch(){
+    this.getMatchDetails(this.matchId);
   }
 
   setDefault(){

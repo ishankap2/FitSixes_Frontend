@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Team } from '../../entities/Team'; 
+import { Team } from '../../entities/Team';
 import {Players} from '../../entities/Players';
 import {TeamServiceService} from '../../services/team-service.service'
 
@@ -38,17 +38,17 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.getAllTeams()
     .subscribe(
       data =>{ this.teams= data},
-      error => alert(error)     
+      error => alert(error)
       );
   }
 
   public AddTeam(){
+    console.log(this.team);
     this.teamService.addTeam(this.team)
     .subscribe(
-      data => alert(data),
-      error => alert(error)       
-      );
-      window.location.reload();
+      data => {alert(data),window.location.reload()},
+      error => {alert(error),window.location.reload()}
+    );
   }
 
   public AddPlayers(){
@@ -58,7 +58,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.addPlayers(this.players)
     .subscribe(
       data => alert(data),
-      error => alert(error)      
+      error => alert(error)
       );
 
       window.location.reload();
@@ -69,7 +69,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.delTeam(this.teamid)
     .subscribe(
       data => alert(data),
-      error => alert(error)       
+      error => alert(error)
       );
       window.location.reload();
   }

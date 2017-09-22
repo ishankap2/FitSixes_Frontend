@@ -34,12 +34,4 @@ export class CreateMatchService {
     });
     }
 
-    getAllMatches(){
-      return this._http.get('http://localhost:3000/api/match/getAllMatches')
-                      // ...and calling .json() on the response to return data
-                       .map((res:Response) => res.json())
-                       //...errors if any
-                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-    }
-
 }

@@ -28,20 +28,4 @@
   </div>
   <hr>
   <button class="btn btn-default"> Create match</button>
-  <br><br>
-  <div class="row col-md-8">
-    <label>Matches</label>
-    <table class="table table-bordered">
-      <tr>
-        <th>Match ID</th>
-        <th>Match Name</th>
-        <th></th>
-      </tr>
-      <tr *ngFor="let match of matches;">
-        <td>{{match.matchId}}</td>
-        <td>{{match.name}}</td>
-        <td><button class="btn btn-sm btn-primary" (click)="goToMatch(match.matchId)" >Go to match</button></td>
-      </tr>
-    </table>
-  </div>
 </div>
