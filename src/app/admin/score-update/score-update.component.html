@@ -19,11 +19,13 @@
   <div class="row col-md-2">
   	<label class="btn btn-basic total_wicket_val">Total :{{totalScoreWicketsStr}}</label>
   	<label class="btn btn-basic total_wicket_val">Overs :{{currentOvers}}</label>
+  	<label class="btn btn-basic total_wicket_val">Extras :{{extras}}</label>
   </div>
 
   <div class="row col-md-2 batting_balling">
     <button class="btn btn-sm btn-primary" style="margin:5px" (click)="swapInnig()" >Change Inning</button>
     <button class="btn btn-sm btn-danger" style="margin:5px" (click)="stopInnig()" >Stop Inning</button>
+    <button class="btn btn-sm btn-danger" style="margin:5px" (click)="stopMacth()" >Stop Match</button>
   </div>
 </div>
 <div class="row">

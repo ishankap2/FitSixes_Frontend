@@ -45,7 +45,7 @@ export class ScoreUpdateService {
                         // ...and calling .json() on the response to return data
                          .map((res:Response) => res.json())
                          //...errors if any
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));   
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
 
         getBowlerResult(matchId:any,playerId:any,teamId:any){
@@ -53,6 +53,6 @@ export class ScoreUpdateService {
                         // ...and calling .json() on the response to return data
                          .map((res:Response) => res.json())
                          //...errors if any
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));   
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
 }

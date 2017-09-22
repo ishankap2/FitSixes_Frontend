@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ScoreUpdateService } from '../../services/score-update.service';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-score-update',
   templateUrl: './score-update.component.html',
   styleUrls: ['./score-update.component.css']
 })
+
+@Injectable()
 export class ScoreUpdateComponent implements OnInit {
+  matchId:any=0;
 	data:any = {}
 	bowlingscore:any ={}
 	battingscore:any ={}
@@ -23,13 +27,25 @@ export class ScoreUpdateComponent implements OnInit {
   constructor(private scoreUpdateService:ScoreUpdateService) { }
 
   ngOnInit() {
-      this.getMatchDetails()
+    //this.getMatchDetails()
+  }
+
+  reloadScoreData(matchId) {
+      console.log("Before "+this.matchId);
+        this.matchId = matchId;
+        console.log("After "+this.matchId);
+        if(this.matchId == 0){
+          this.getMatchDetails();
+        }else{
+          this.getMatchScoreHistory();
+        }
+  }
+
+  getMatchScoreHistory(){
 
   }
 
   updateBallByball(){
-        //this.players[0][0].score = "aaaaaaaaaaaaaaaaaa";
-
         this.bowlingscore.over=Number(""+this.over_num+"."+this.ball_num)
         this.bowlingscore.currentBall=Number("0."+this.ball_num)
         if(this.data.wicket){
