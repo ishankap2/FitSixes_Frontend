@@ -19,7 +19,9 @@ export class CreateMatchComponent implements OnInit {
   team2id:any;
   overs: number;
   balls: number;
-
+  name:string;
+  groundId: number;
+  
   teams : any;
 
   ngOnInit() {
@@ -31,7 +33,21 @@ export class CreateMatchComponent implements OnInit {
   }
 
   createMatch(){
-    console.log(this.team1id,this.team2id,this.overs,this.balls)
+    var match = {
+      name:this.name,
+      groundId: this.groundId,
+      overs: this.overs,
+      balls: this.balls,
+      team1id: this.team1id,
+      team2id: this.team2id
+    }
+
+    this.matchService.createMatch(match)
+    .subscribe(
+      data => alert("Success"),
+      error => alert(error)       
+      );
+      window.location.reload();
   }
 
 }

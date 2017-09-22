@@ -8,7 +8,7 @@ export class CreateMatchService {
 
   constructor(private _http: Http){}
   
-   public postData(match: any){
+   public createMatch(match: any){
         var headers = new Headers();
         headers.append('Content-Type','application/json');
         return this._http.post('http://localhost:3000/api/team/addTeam',match,{ headers: headers})
