@@ -7,44 +7,26 @@
     <label class="radio-inline label-default inning_label">
     <input type="radio" [value]="2"  [(ngModel)]="bowlingscore.inningId" [(ngModel)]="battingscore.inningId" name="innings" #inningId="ngModel">2nd innings</label>
   </div>
-  <div class="row col-md-4 batting_balling">
+  <div class="row col-md-2 batting_balling">
     <label>Batting :</label>
-  	<input type="text" [value]="battingscore.teamName" readonly/>
+  	<input class="form-control" type="text" [value]="battingscore.teamName" readonly/>
   </div>
 
-  <div class="row col-md-4 batting_balling">
+  <div class="row col-md-2 batting_balling">
     <label>Balling :</label>
-  	<input class="" type="text" [value]="bowlingscore.teamName" readonly/>
+  	<input class="form-control" type="text" [value]="bowlingscore.teamName" readonly/>
+  </div>
+  <div class="row col-md-2">
+  	<label class="btn btn-basic total_wicket_val">Total :{{totalScoreWicketsStr}}</label>
+  	<label class="btn btn-basic total_wicket_val">Overs :{{currentOvers}}</label>
+  </div>
+
+  <div class="row col-md-2 batting_balling">
+    <button class="btn btn-primary" (click)="swapInnig()" >Change Inning</button>
   </div>
 </div>
 <div class="row">
-	<div class="col-md-8">
-		<div class="row">
-      <label>Batting Team</label>
-			<table class="table table-bordered">
-				<tr *ngFor="let batsmen of battingscore.players;">
-					<td class="table_player_column">
-            <label><input type="radio" name="batting" [value]="batsmen.playerId" [(ngModel)]="battingscore.playerId" #playerId="ngModel">{{batsmen.name}}</label>
-          </td>
-					<td class="table_score_column">Score goes here...</td>
-					<td><label>Total of Player 1</label></td>
-				</tr>
-			</table>
-		</div>
-		<div class="row">
-      <label>Balling Team</label>
-			<table class="table table-bordered">
-				<tr *ngFor="let ballers of battingscore.players;">
-					<td class="table_player_column">
-            <label><input type="radio" name="bowling" [value]="ballers.playerId" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">{{ballers.name}}</label>
-          </td>
-					<td>Score goes here...</td>
-					<td><label>Total of Player 1</label></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div class="col-md-4">
+<div class="col-md-4">
 		<div class="row score_div">
       <label>Score :</label><br>
       		<label class="radio-inline btn btn-default score_val"><input type="radio" name="runs" [value]="0"  [(ngModel)]="bowlingscore.runs" [(ngModel)]="battingscore.runs" #runs="ngModel">Score "0"</label>
@@ -57,26 +39,64 @@
 		</div>
 		<div class="row score_div">
 			<label>No/Wide/Wicket :</label><br>
-      <label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="valid"  [(ngModel)]="bowlingscore.ball_type" #ball_type="ngModel" >Valid</label>
-			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="no_ball"  [(ngModel)]="bowlingscore.ball_type" #ball_type="ngModel">No Ball</label>
-			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="wide"  [(ngModel)]="bowlingscore.ball_type" #ball_type="ngModel">Wide</label>
+      <label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="valid"  [(ngModel)]="data.ball_type" #ball_type="ngModel" >Valid</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="no_ball"  [(ngModel)]="data.ball_type" #ball_type="ngModel">No Ball</label>
+			<label class="radio-inline btn btn-default score_val"><input type="radio" name="ball_type" value="wide"  [(ngModel)]="data.ball_type" #ball_type="ngModel">Wide</label>
 		</div>
     <div class="row score_div">
       <label>No/Wide/Wicket :</label><br>
       
-        <label class="radio-inline btn btn-default score_val"><input class="form=-control" type="checkbox" [(ngModel)]="bowlingscore.bye" name="wicket">Bye</label>
+        <label class="radio-inline btn btn-default score_val"><input class="form=-control" type="checkbox" [(ngModel)]="data.bye" name="bye">Bye</label>
 
-        <label class="radio-inline btn btn-default score_val"><input class="form=-control" [value]="1" type="checkbox" [(ngModel)]="bowlingscore.run_out" name="run_out">Run Out</label>
+        <label class="radio-inline btn btn-default score_val"><input class="form=-control" [value]="1" type="checkbox" [(ngModel)]="data.run_out" name="run_out">Run Out</label>
 
-        <label class="radio-inline btn btn-default score_val"><input class="form=-control" [value]="1" type="checkbox" [(ngModel)]="bowlingscore.wicket"name="wicket">Wicket</label>
+        <label class="radio-inline btn btn-default score_val"><input class="form=-control" [value]="1" type="checkbox" [(ngModel)]="data.wicket" name="wicket">Wicket</label>
 
     </div>
     <div class="row score_div">
-			<button class="btn btn-lg btn-primary btn-block btn-signin" (click)="updateBallByball()" >Register</button>
-		</div>
-	<div class="row score_div">
-			<button class="btn btn-lg btn-primary btn-block btn-signin" (click)="swapInnig()" >Change innig</button>
+			<button class="btn btn-lg btn-primary btn-block btn-signin" (click)="updateBallByball()" >Update</button>
 		</div>	
 	</div>
+	<div class="col-md-8">
+		<div class="row">
+      <label>Batting Team</label>
+			<table class="table table-bordered">
+			<tr>
+					<th>Player</th>
+					<th>Score</th>
+					<th>Total</th>
+				</tr>
+				<tr *ngFor="let batsmen of players[0];">
+					<td class="table_player_column">
+            <label><input type="radio" name="batting" [value]="batsmen.playerId" [(ngModel)]="battingscore.playerId" #playerId="ngModel">{{batsmen.name}}</label>
+          </td>
+					<td class="table_score_column" >{{batsmen.score}}</td>
+					<td><label>{{batsmen.total}}</label></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row">
+      <label>Balling Team</label>
+			<table class="table table-bordered">
+				<tr>
+					<th>Bowler</th>
+					<th>Runs</th>
+					<th>Wickets</th>
+					<th>No Balls</th>
+					<th>Wide Balls</th>
+				</tr>
+				<tr *ngFor="let ballers of players[1];">
+					<td class="table_player_column">
+            <label><input type="radio" name="bowling" [value]="ballers.playerId" [(ngModel)]="bowlingscore.bowlerId" #bowlerId="ngModel">{{ballers.name}}</label>
+          </td>
+					<td>{{ballers.bowlerResult.runs}}</td>
+					<td>{{ballers.bowlerResult.wickets}}</td>
+					<td>{{ballers.bowlerResult.noBalls}}</td>
+					<td>{{ballers.bowlerResult.wideBalls}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
 </div>
 </div>
