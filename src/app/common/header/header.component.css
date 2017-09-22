@@ -3,8 +3,7 @@ li{
 }
 .navbar-right{
   margin-right: 20px;
-  height: 50px;
-
+  /*height: 50px;*/
 }
 .navbar-default {
   background-color: white;
@@ -13,7 +12,7 @@ li{
 }
 .navbar{
   /*border-bottom: solid #168fec 3px;*/
-  padding-top: 5px;
+
   margin-bottom: 0px;
   background-color: #fdfdfd;
   border-bottom: solid #0068a5 2px;
@@ -29,4 +28,7 @@ li:hover {
 .navbar-nav li a {
   line-height: 50px;
   font-size: 1em;
+}
+.icon-bar{
+  background-color: black;
 }

@@ -11,6 +11,8 @@ import {FormsModule} from "@angular/forms";
 import { CreateTeamComponent } from './admin/create-team/create-team.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AuthService } from '../app/services/auth.service'
+import { ScoreUpdateComponent } from './admin/score-update/score-update.component';
+import {ScoreUpdateService} from "./services/score-update.service";
 
 
 @NgModule({
@@ -20,15 +22,14 @@ import { AuthService } from '../app/services/auth.service'
     HeaderComponent,
     HomeComponent,
     CreateTeamComponent,
-    LoginComponent
-  ],
+    LoginComponent,
+    ScoreUpdateComponent  ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
     FormsModule,
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+  providers: [ScoreUpdateService,AuthService],  bootstrap: [AppComponent]
 })
 export class AppModule { }

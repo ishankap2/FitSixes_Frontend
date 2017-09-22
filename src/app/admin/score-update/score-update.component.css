@@ -1,0 +1,36 @@
+.inning_label{
+  padding: 5px;
+  font-weight: bold;
+  margin-right: 15px;
+  border-radius: 5px
+}
+
+.batting_balling{
+  margin-right: 15px;
+}
+
+.batting_balling_val{
+  background-color: gray;
+}
+
+.total_wicket_val{
+  color: black;
+  font-weight: bold;
+}
+
+.table_player_column{
+  width: 250px;
+}
+
+.table_score_column{
+  overflow: scroll;
+}
+
+.score_div{
+  margin: 10px;
+  padding: 10px;
+}
+.score_val{
+  border-radius: 5px;
+  margin: 5px;
+}
