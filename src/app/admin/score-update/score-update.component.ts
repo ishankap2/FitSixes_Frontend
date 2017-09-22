@@ -23,8 +23,8 @@ export class ScoreUpdateComponent implements OnInit {
   constructor(private scoreUpdateService:ScoreUpdateService) { }
 
   ngOnInit() {
-      this.getMatchDetails()        
-        
+      this.getMatchDetails()
+
   }
 
   updateBallByball(){
@@ -50,7 +50,7 @@ export class ScoreUpdateComponent implements OnInit {
           this.bowlingscore.extras++;
           this.bowlingscore.runs++;
           this.bowlingscore.isNoBall=1
-          
+
         }
         if (this.data.ball_type=="wide"){
           this.bowlingscore.extras++;
@@ -74,12 +74,12 @@ export class ScoreUpdateComponent implements OnInit {
   	    this.scoreUpdateService.updateScore(this.battingscore,this.bowlingscore)
         .subscribe(
                          res=>{
-                           console.log(res);    
+                           console.log(res);
                          },
                          err=> {}
                          ),this.getPlayerScore();
                             this.getBowlerResult();
-                            this.setDefault();        
+                            this.setDefault();
   }
 
   getPlayerScore(){
@@ -169,6 +169,11 @@ export class ScoreUpdateComponent implements OnInit {
 
   }
 
+  stopInnig(){
+    this.over_num = 0;
+    this.ball_num = 1;
+  }
+
   setDefault(){
         this.data.ball_type="valid"
         this.bowlingscore.runs=0
@@ -187,7 +192,7 @@ export class ScoreUpdateComponent implements OnInit {
         this.data.wicket=false
         this.scoreStr = "";
         this.totScore = 0;
-        
+
   }
 
 
