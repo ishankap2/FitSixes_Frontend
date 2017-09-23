@@ -7,49 +7,13 @@ export class HomeService {
   constructor(private _http: Http) { }
 
     getLiveMatches(){
-        // return this._http.get("http://localhost:8080/api/live/getAllLiveScores")
-        // .map(res => res.json());
-        return {
-            "groundA": [
-                {
-                    "teamId": 2,
-                    "teamName": "Arimac Team",
-                    "companyName": "Arimac",
-                    "total": 13,
-                    "extras": 1,
-                    "wickets": 0,
-                    "overs": 0,
-                    "battingTeamId": 1
-                },
-                {
-                    "teamId": 1,
-                    "teamName": "Batch 13",
-                    "companyName": "Fit",
-                    "total": 26,
-                    "extras": 0,
-                    "wickets": 0,
-                    "overs": 0,
-                    "battingTeamId": 1
-                }
-            ],
-            "groundB": [
-                {
-                    "teamId": 4,
-                    "teamName": "Creative Solutuion Team ",
-                    "companyName": "Creative Solutions",
-                    "total": 4,
-                    "extras": 0,
-                    "wickets": 0,
-                    "overs": 0,
-                    "battingTeamId": 4
-                }
-            ],
-            "groundD": null
-        }
+        return this._http.get("http://159.203.77.217:8080/api/live/getAllLiveScores")
+        .map(res => res.json());
     }
 
     getRecentMatches(){
-        
+        return this._http.get("http://159.203.77.217:8080/api/match/getAllRecentMatches")
+        .map(res => res.json());
     }
 
 }

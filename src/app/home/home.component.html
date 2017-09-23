@@ -13,7 +13,7 @@
         <div class="col-lg-6" *ngIf="groundA">
           <div style="margin: 5px">
             <div style="border: solid 1px #df2d4b">
-              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"  > {{groundAMatchName}}</h4>
+              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"  > {{groundAName}}</h4>
               <p style="text-align: center"> {{groundABattingName}} </p>
               <p style="text-align: center;font-size: 1.4em;font-weight: bold"> {{groundAscore}}/{{groundAwickets}}</p>
               <p style="text-align: center"> {{groundAovers}} overs || <span *ngIf="groundATarget">Target </span>{{groundATarget}}</p>
@@ -23,8 +23,7 @@
         <div class="col-lg-6" *ngIf="!groundA">
           <div style="margin: 5px">
             <div style="border: solid 1px #df2d4b">
-              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"></h4>
-              <p style="text-align: center">_______</p>
+              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white">--</h4>
               <p style="text-align: center;font-size: 1.4em;font-weight: bold">GROUND A</p>
               <p style="text-align: center;font-size: 1.4em;font-weight: bold">NO MATCHES YET</p>
               <p style="text-align: center;font-size: 0.8em">_____</p>
@@ -36,7 +35,7 @@
         <div class="col-lg-6" *ngIf="groundB">
           <div style="margin: 5px">
             <div style="border: solid 1px #df2d4b">
-              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"  > {{groundBMatchName}}</h4>
+              <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"  > {{groundBName}}</h4>
               <p style="text-align: center"> {{groundBBattingName}} </p>
               <p style="text-align: center;font-size: 1.4em;font-weight: bold"> {{groundBscore}}/{{groundBwickets}}</p>
               <p style="text-align: center"> {{groundBovers}} overs || <span *ngIf="groundBTarget">Target </span>{{groundBsTarget}}</p>
@@ -46,7 +45,7 @@
         <div class="col-lg-6" *ngIf="!groundB">
             <div style="margin: 5px">
               <div style="border: solid 1px #df2d4b">
-                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"></h4>
+                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white">--</h4>
                 <p style="text-align: center"></p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">GROUND B</p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">NO MATCHES YET</p>
@@ -69,7 +68,7 @@
         <div class="col-lg-6" *ngIf="!groundC">
             <div style="margin: 5px">
               <div style="border: solid 1px #df2d4b">
-                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"></h4>
+                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white">--</h4>
                 <p style="text-align: center"></p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">GROUND C</p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">NO MATCHES YET</p>
@@ -91,7 +90,7 @@
         <div class="col-lg-6" *ngIf="!groundD">
             <div style="margin: 5px">
               <div style="border: solid 1px #df2d4b">
-                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white"></h4>
+                <h4 style="text-align: center;background-color: #df2d4b;padding: 15px;color: white">--</h4>
                 <p style="text-align: center"></p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">GROUND D</p>
                 <p style="text-align: center;font-size: 1.4em;font-weight: bold">NO MATCHES YET</p>
@@ -118,20 +117,10 @@
     <hr style="height:1px;border:none;color:#df2d4b;background-color:#df2d4b; width: 30%"  >
     <table class="table table-bordered mytable table-striped" style="width:80%; margin: auto" >
       <tbody>
-      <tr style="padding: 5px">
-        <td>Virtusa</td>
-        <td>MIT Won By 6 Wickets</td>
-        <td> MIT </td>
-      </tr>
-      <tr>
-        <td>Virtusa</td>
-        <td>MIT Won By 6 Wickets</td>
-        <td> MIT </td>
-      </tr>
-      <tr>
-        <td>Virtusa</td>
-        <td>MIT Won By 6 Wickets</td>
-        <td> MIT </td>
+      <tr style="padding: 5px" *ngFor="let rec of recent;let i=index">
+        <td *ngIf="i<6">{{rec.team1Name}}</td>
+        <td *ngIf="i<6">{{rec.winTeam}} Won the Match</td>
+        <td *ngIf="i<6">{{rec.team2Name}}</td>
       </tr>
       </tbody>
     </table>

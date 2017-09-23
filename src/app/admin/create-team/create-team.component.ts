@@ -57,11 +57,9 @@ export class CreateTeamComponent implements OnInit {
     ]}
     this.teamService.addPlayers(this.players)
     .subscribe(
-      data => alert(data),
-      error => alert("error")      
+      data => {alert(data),window.location.reload();},
+      error => {alert("error"),window.location.reload();}      
       );
-
-      window.location.reload();
     console.log(this.players)
   }
 
