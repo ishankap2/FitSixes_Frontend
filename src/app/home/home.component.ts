@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../services/home-service'
+import { IntervalObservable } from "rxjs/observable/IntervalObservable";
+
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +13,24 @@ import 'rxjs/add/operator/catch';
   providers:[HomeService]
 })
 export class HomeComponent implements OnInit {
-
+  
   results: any
   recent: any
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
   ) { }
 
- 
 
   ngOnInit() {
-    this.homeService.getRecentMatches()
-    .subscribe(
-      data =>{ this.recent = data, console.log(this.recent),this.getResults();},
-      error => alert("error")     
-      );
+    Observable.interval(20000).subscribe(x => {
+      this.homeService.getRecentMatches()
+      .subscribe(
+        data =>{ this.recent = data, console.log(this.recent),this.getResults();},
+        error => alert("error")     
+        );
+    });
+    
   }
 
   public getResults(){
