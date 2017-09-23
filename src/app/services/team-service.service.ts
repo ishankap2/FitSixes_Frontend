@@ -9,16 +9,18 @@ import 'rxjs/add/operator/map';
 export class TeamServiceService {
 
   constructor(private _http: Http){}
+
+    baseUrl: string = "http://159.203.77.217:8080";
   
     public  getAllTeams(){
-          return this._http.get("http://localhost:8080/api/team/getAllTeams")
+          return this._http.get(this.baseUrl+"api/team/getAllTeams")
           .map(res => res.json());
     }
   
     public addTeam(team: Team){
           var headers = new Headers();
           headers.append('Content-Type','application/json');
-          return this._http.post('http://localhost:8080/api/team/addTeam',team,{ headers: headers})
+          return this._http.post(this.baseUrl+'api/team/addTeam',team,{ headers: headers})
           .map(res => res.json());
   
     }
@@ -26,7 +28,7 @@ export class TeamServiceService {
     public addPlayers(players: any){
       var headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this._http.post('http://localhost:8080/api/player/addPlayers',players,{ headers: headers})
+      return this._http.post(this.baseUrl+'api/player/addPlayers',players,{ headers: headers})
       .map(res => res.json());
     }
 
@@ -34,7 +36,7 @@ export class TeamServiceService {
       console.log(id)
       var headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this._http.post('http://localhost:8080/api/team/removeTeam',{ "teamId":id},{ headers: headers})
+      return this._http.post(this.baseUrl+'api/team/removeTeam',{ "teamId":id},{ headers: headers})
       .map(res => res.json());
     }
 

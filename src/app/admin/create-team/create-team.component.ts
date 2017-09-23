@@ -38,7 +38,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.getAllTeams()
     .subscribe(
       data =>{ this.teams= data},
-      error => alert(error)     
+      error => alert("error")     
       );
   }
 
@@ -46,7 +46,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.addTeam(this.team)
     .subscribe(
       data => {console.log(data)},
-      error => alert(error)       
+      error => alert("error")       
       );
       window.location.reload();
   }
@@ -58,7 +58,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.addPlayers(this.players)
     .subscribe(
       data => alert(data),
-      error => alert(error)      
+      error => alert("error")      
       );
 
       window.location.reload();
@@ -69,7 +69,7 @@ export class CreateTeamComponent implements OnInit {
     this.teamService.delTeam(this.teamid)
     .subscribe(
       data => alert(data),
-      error => alert(error)       
+      error => alert("error")       
       );
       window.location.reload();
   }

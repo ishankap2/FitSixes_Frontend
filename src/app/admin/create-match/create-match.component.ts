@@ -44,7 +44,7 @@ export class CreateMatchComponent implements OnInit {
     this.matchService.createMatch(match)
     .subscribe(
       data =>  {console.log(data)},
-      error => alert(error)       
+      error => alert("Error")       
       );
       window.location.reload();
   }
