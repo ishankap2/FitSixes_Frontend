@@ -43,10 +43,10 @@ export class CreateMatchComponent implements OnInit {
     }
     this.matchService.createMatch(match)
     .subscribe(
-      data =>  {console.log(data)},
-      error => alert("Error")       
+      data =>  {console.log(data),window.location.reload()},
+      error => {window.location.reload()}       
       );
-      window.location.reload();
+      // window.location.reload();
   }
 
 }
