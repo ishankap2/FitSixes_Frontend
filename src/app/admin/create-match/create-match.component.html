@@ -1,31 +1,40 @@
-<br>
+<div style="margin-top:10%"></div>
 <div class="container">
-  <p style="margin-right: 20px"> Select the ground
-
-<select>
-  <option value="volvo">1</option>
-  <option value="saab">2</option>
-  <option value="opel">3</option>
-  <option value="audi">4</option>
-</select>
-  </p>
+    <div class="row">
+        <div class="col-lg-6">
+            <p style="margin-right: 20px"> Select the ground
+                <select [(ngModel)]="groundId" name="groundId">
+                  <option value=1>A</option>
+                  <option value=2>B</option>
+                  <option value=3>C</option>
+                  <option value=4>D</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-lg-6">Match Name <input type="text" style="margin-right: 20px; width:200px" [(ngModel)]="name" name="name"></div>
+      </div>
+ 
   <hr>
     <div class="row">
     <div class="col-lg-6"> Select the team
-      <select style="margin-left: 20px">
-        <option value="volvo" *ngFor="let det of matchdata">{{det.ProductName}}</option>
-      </select></div>
-    <div class="col-lg-6">Select the team
-      <select style="margin-left: 20px" >
-          <option value="volvo" *ngFor="let det of matchdata">{{det.ProductName}}</option>
+      <select style="margin-left: 20px" [(ngModel)]="team1id" name="team1id">
+          <option *ngFor="let team of teams; let i = index" value='{{team.teamId}}'>{{team.teamName}}</option>
+      </select>
+  </div>
+  <div class="col-lg-6"> Select the team
+    <select style="margin-left: 20px" [(ngModel)]="team2id" name="team2id">
+        <option *ngFor="let team of teams; let i = index" value='{{team.teamId}}'>{{team.teamName}}</option>
     </select>
   </div>
+
     </div>
   <br>
   <div class="row">
-    <div class="col-lg-6"> Overs per match <input type="text" style="margin-right: 20px"></div>
-    <div class="col-lg-6">Balls per over <input type="text" style="margin-right: 20px"></div>
+    <div class="col-lg-6"> Overs per match <input type="number" style="margin-right: 20px" [(ngModel)]="overs" name="overs"></div>
+    <div class="col-lg-6">Balls per over <input type="number" style="margin-right: 20px" [(ngModel)]="balls" name="balls"></div>
   </div>
   <hr>
-  <button class="btn btn-default"> Create match</button>
+  <button class="btn btn-default" (click)="createMatch()"> Create match</button>
 </div>
+
+<hr>

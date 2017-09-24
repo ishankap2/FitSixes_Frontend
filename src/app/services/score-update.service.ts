@@ -63,4 +63,28 @@ export class ScoreUpdateService {
                            //...errors if any
                            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         }
+
+        stopInnig(matchId:any,battingTeamId:any){
+            return this.http.post('http://159.203.77.217:8080/api/bowler/changeInning',{matchId:matchId,battingTeamId:battingTeamId})
+                        // ...and calling .json() on the response to return data
+                         .map((res:Response) => res)
+                         //...errors if any
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        }
+
+        stopMatch(matchId:any,wonTeamId:any){
+            return this.http.post('http://159.203.77.217:8080/api/bowler/endMatch',{matchId:matchId,wonTeamId:wonTeamId})
+                        // ...and calling .json() on the response to return data
+                         .map((res:Response) => res)
+                         //...errors if any
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        }
+
+        loadMatch(matchId:any,groundId:any){
+            return this.http.post('http://159.203.77.217:8080/api/bowler/startMatch',{matchId:matchId,groundId:groundId})
+                        // ...and calling .json() on the response to return data
+                         .map((res:Response) => res)
+                         //...errors if any
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        }
 }

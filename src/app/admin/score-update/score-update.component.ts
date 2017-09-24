@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ScoreUpdateComponent implements OnInit {
   matchId:any=0;
+  groundId:any=0;
 	data:any = {}
 	bowlingscore:any ={}
 	battingscore:any ={}
@@ -22,6 +23,7 @@ export class ScoreUpdateComponent implements OnInit {
   tempScores = [];
   scoreStr:string = "";
   totScore:number=0;
+  extras:number=0;
   totalScoreWicketsStr:string = "0/0";
   currentOvers:string = "0.0";
   allMatches:any = [];
@@ -53,7 +55,7 @@ export class ScoreUpdateComponent implements OnInit {
         if(this.data.ball_type=="valid"){
           this.bowlingscore.isValidBall=1
           this.ball_num++;
-          if(this.ball_num > this.matchDetails.ballsPerOvers){
+          if(this.ball_num > this.matchDetails.balls){
             this.over_num++;
             this.ball_num=1;
           }
@@ -83,6 +85,9 @@ export class ScoreUpdateComponent implements OnInit {
         if(this.bowlingscore.extras==0 && this.battingscore.runs==0){
           this.battingscore.isDot=1;
         }
+        console.log(this.bowlingscore);
+        console.log(this.battingscore);
+
   	    this.scoreUpdateService.updateScore(this.battingscore,this.bowlingscore)
         .subscribe(
                          res=>{
@@ -109,8 +114,9 @@ export class ScoreUpdateComponent implements OnInit {
                                player.total = this.totScore;
                              }
                            }
-                           this.totalScoreWicketsStr = res.matchResult.total+"/"+res.matchResult.wickets;
-                           this.currentOvers = res.matchResult.currentOvers;
+                           this.totalScoreWicketsStr = res.matchResult[0].total+"/"+res.matchResult[0].wickets;
+                           this.currentOvers = res.matchResult[0].overs;
+                           this.extras = res.matchResult[0].extras;
                          },
                          err=> {}
                          );
@@ -136,8 +142,8 @@ export class ScoreUpdateComponent implements OnInit {
      .subscribe(
                          res=>{
                             this.matchDetails=res;
-                            this.battingscore={'matchId':this.matchDetails.matchId,'teamId':this.matchDetails.teams[0].teamId,'teamName':this.matchDetails.teams[0].teamName}
-                            this.bowlingscore={'matchId':this.matchDetails.matchId,'teamId':this.matchDetails.teams[1].teamId,'teamName':this.matchDetails.teams[1].teamName,'extras':0}
+                            this.battingscore={'matchId':this.matchDetails.matchId,'teamId':this.matchDetails.teams[0].teamId,'battingTeamId':this.matchDetails.teams[1].teamId,'bowlingTeamId':this.matchDetails.teams[0].teamId,'teamName':this.matchDetails.teams[0].teamName,'extras':0}
+                            this.bowlingscore={'matchId':this.matchDetails.matchId,'battingTeamId':this.matchDetails.teams[0].teamId,'bowlingTeamId':this.matchDetails.teams[1].teamId,'teamId':this.matchDetails.teams[1].teamId,'teamName':this.matchDetails.teams[1].teamName,'extras':0}
                             this.setDefault()
                             this.players[0]=[];
                             this.players[1]=[];
@@ -182,14 +188,33 @@ export class ScoreUpdateComponent implements OnInit {
 
   stopInnig(){
     this.over_num = 0;
-    this.ball_num = 1;
+    this.ball_num = 0;
+     this.scoreUpdateService.stopInnig(this.matchId,this.bowlingscore.teamId)
+     .subscribe(
+                         res=>{console.log(res)
+                         },
+                         err=> {console.log(err)}
+                         );
+    
   }
   stopMatch(){
-
+    console.log(this.data.wonTeamId);
+    this.scoreUpdateService.stopMatch(this.matchId,this.data.wonTeamId)
+     .subscribe(
+                         res=>{console.log(res)
+                         },
+                         err=> {console.log(err)}
+                         );
   }
 
   loadMatch(){
     this.getMatchDetails(this.matchId);
+    this.scoreUpdateService.loadMatch(this.matchId,this.groundId)
+     .subscribe(
+                         res=>{console.log(res)
+                         },
+                         err=> {console.log(err)}
+                         );
   }
 
   setDefault(){
